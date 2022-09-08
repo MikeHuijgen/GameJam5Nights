@@ -12,12 +12,13 @@ public class AIPathFinding : MonoBehaviour
     [SerializeField] private float changeDestinationTime;
 
     [SerializeField] private float currentDesTime;
-    private Transform currentWaypoint;
+    public Transform currentWaypoint;
     private NavMeshAgent agent;
     private GeneratePath generatePath;
     private GameManager gameManager;
 
     private bool timeHasChanged = false;
+    private bool batteryDied = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,16 +38,20 @@ public class AIPathFinding : MonoBehaviour
 
     private void CheckTimeForNewWaypoint()
     {
-        currentDesTime -= Time.deltaTime;
-        if (currentDesTime <= 0)
+        if(!batteryDied)
         {
-            generatePath.GenPath(this);
-            currentDesTime = changeWaypointTime;
+            currentDesTime -= Time.deltaTime;
+            if (currentDesTime <= 0)
+            {
+                generatePath.GenPath(this);
+                currentDesTime = changeWaypointTime;
+            }
         }
     }
 
     public void GetWaypoint(Transform waypoint)
     {
+        currentWaypoint = waypoint;
         agent.SetDestination(waypoint.position);
     }
 
@@ -57,5 +62,10 @@ public class AIPathFinding : MonoBehaviour
             timeHasChanged = true;
             changeWaypointTime /= 2; 
         }
+    }
+
+    public void GoKillThePLayer()
+    {
+        batteryDied = true;
     }
 }
