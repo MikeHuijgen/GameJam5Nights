@@ -538,14 +538,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5550869790651801578, guid: a90f0b5e10161b949b03adbdaf41e417, type: 3}
-      propertyPath: doorWaypoint
-      value: 
-      objectReference: {fileID: 183160980}
-    - target: {fileID: 5550869790651801578, guid: a90f0b5e10161b949b03adbdaf41e417, type: 3}
-      propertyPath: addWaypointTime
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5550869790651801579, guid: a90f0b5e10161b949b03adbdaf41e417, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -593,6 +585,10 @@ PrefabInstance:
     - target: {fileID: 5550869790651801581, guid: a90f0b5e10161b949b03adbdaf41e417, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7030764304571464548, guid: a90f0b5e10161b949b03adbdaf41e417, type: 3}
+      propertyPath: secondTime
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a90f0b5e10161b949b03adbdaf41e417, type: 3}
@@ -791,6 +787,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1284277243, guid: 4a015719f95c2e240ac5ecd8709c2d8c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8438125267228424641, guid: 4a015719f95c2e240ac5ecd8709c2d8c, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -838,6 +838,10 @@ PrefabInstance:
     - target: {fileID: 8438125267228424643, guid: 4a015719f95c2e240ac5ecd8709c2d8c, type: 3}
       propertyPath: m_Name
       value: Battery
+      objectReference: {fileID: 0}
+    - target: {fileID: 8438125267228424643, guid: 4a015719f95c2e240ac5ecd8709c2d8c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a015719f95c2e240ac5ecd8709c2d8c, type: 3}
