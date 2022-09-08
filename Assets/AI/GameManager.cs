@@ -6,7 +6,6 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] public float gameTime;
     [SerializeField] private float addWaypointTime;
-    [SerializeField] private Transform doorWaypoint;
     private GeneratePath generatePath;
     private bool hasAddWaypoint = false;
 
