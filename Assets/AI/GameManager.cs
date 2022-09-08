@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     private GeneratePath generatePath;
     private bool hasAddWaypoint = false;
 
-    private void Awake()
+    private void Start()
     {
         generatePath = FindObjectOfType<GeneratePath>();
     }
