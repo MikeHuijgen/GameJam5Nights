@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; 
-public class CrossHair : MonoBehaviour
+public class CrossHairMovement : MonoBehaviour
 {
     [SerializeField] Image crossHairColor;
     [SerializeField] GameObject door; 
