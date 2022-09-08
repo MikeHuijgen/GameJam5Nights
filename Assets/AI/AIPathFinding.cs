@@ -6,51 +6,40 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class AIPathFinding : MonoBehaviour
 {
-    [SerializeField] private float desChangeTime;
-    [SerializeField] private List<Transform> waypoints = new List<Transform>();
-    [SerializeField] private Transform waypointParent;
-    [SerializeField] private Transform doorWaypoint;
+    [Header("AI Settings")]
+    [SerializeField][Range(1,20)] private float desChangeTime;
 
-    private float currentDesTime;
+    [SerializeField] private float currentDesTime;
     private Transform currentWaypoint;
     private NavMeshAgent agent;
+    private GeneratePath generatePath;
 
     // Start is called before the first frame update
     void Start()
     {
+        generatePath = FindObjectOfType<GeneratePath>();
         currentDesTime = desChangeTime;
-        CheckForWaypoints();
         agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetWaypoint();
+        CheckTimeForNewWaypoint();
     }
 
-    private void CheckForWaypoints()
-    {
-        foreach (Transform child in waypointParent)
-        {
-            waypoints.Add(child);
-        }
-    }
-
-    private void GetWaypoint()
+    private void CheckTimeForNewWaypoint()
     {
         currentDesTime -= Time.deltaTime;
         if (currentDesTime <= 0)
         {
-            Transform destination = waypoints[Random.Range(0, waypoints.Count)];
-            currentWaypoint = destination;
-            agent.SetDestination(destination.position);
+            generatePath.GenPath(this);
             currentDesTime = desChangeTime;
         }
     }
 
-    public void AddDoorWaypoint()
+    public void GetWaypoint(Transform waypoint)
     {
-        waypoints.Add(doorWaypoint);
+        agent.SetDestination(waypoint.position);
     }
 }

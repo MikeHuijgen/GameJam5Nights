@@ -262,9 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desChangeTime: 5
-  waypoints: []
-  waypointParent: {fileID: 1733522495}
-  doorWaypoint: {fileID: 1394463240}
+  currentDesTime: 0
 --- !u!65 &373241023
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -444,7 +442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 394484368}
   m_Layer: 0
-  m_Name: Waypoint1 (2)
+  m_Name: Waypoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -457,7 +455,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394484367}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -18.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -519,10 +517,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 710039c866e9c104cbf6f91bace66efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desChangeTime: 10
-  waypoints: []
-  waypointParent: {fileID: 1733522495}
-  doorWaypoint: {fileID: 1394463240}
+  desChangeTime: 5
+  currentDesTime: 0
 --- !u!65 &509000197
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -705,7 +701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1358895730}
   m_Layer: 0
-  m_Name: Waypoint1 (1)
+  m_Name: Waypoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -718,7 +714,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1358895729}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 21.1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -765,7 +761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1435782097}
   m_Layer: 0
-  m_Name: Waypoint1 (3)
+  m_Name: Waypoint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -778,7 +774,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435782096}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -13.17, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -840,10 +836,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 710039c866e9c104cbf6f91bace66efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desChangeTime: 3
-  waypoints: []
-  waypointParent: {fileID: 1733522495}
-  doorWaypoint: {fileID: 1394463240}
+  desChangeTime: 5
+  currentDesTime: 0
 --- !u!65 &1591587461
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -930,7 +924,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1595959642}
   m_Layer: 0
-  m_Name: Waypoint1
+  m_Name: Waypoint0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -943,7 +937,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1595959641}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 18.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -959,6 +953,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1733522495}
+  - component: {fileID: 1733522496}
   m_Layer: 0
   m_Name: WaypointParent
   m_TagString: Untagged
@@ -984,6 +979,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1733522496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733522494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dde6c99cd894e1458b2e5a6f43684c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorWaypoint: {fileID: 1394463240}
+  waypoints: []
+  waypointParent: {fileID: 1733522495}
+  currentWaypoint: {fileID: 0}
 --- !u!1 &1922372986
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,7 +1025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTime: 0
-  addWaypointTime: 30
+  addWaypointTime: 10
   doorWaypoint: {fileID: 1394463240}
 --- !u!4 &1922372988
 Transform:
@@ -1085,10 +1096,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 710039c866e9c104cbf6f91bace66efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desChangeTime: 6
-  waypoints: []
-  waypointParent: {fileID: 1733522495}
-  doorWaypoint: {fileID: 1394463240}
+  desChangeTime: 5
+  currentDesTime: 0
 --- !u!65 &2007586909
 BoxCollider:
   m_ObjectHideFlags: 0

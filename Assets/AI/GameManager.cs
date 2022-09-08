@@ -7,12 +7,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float gameTime;
     [SerializeField] private float addWaypointTime;
     [SerializeField] private Transform doorWaypoint;
-    private AIPathFinding aI;
+    private GeneratePath generatePath;
     private bool hasAddWaypoint = false;
 
     private void Awake()
     {
-        aI = FindObjectOfType<AIPathFinding>();
+        generatePath = FindObjectOfType<GeneratePath>();
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
         if (gameTime >= addWaypointTime && !hasAddWaypoint)
         {
-            aI.AddDoorWaypoint();
+            generatePath.AddDoorWaypoint();
             hasAddWaypoint = true;
         }
     }
