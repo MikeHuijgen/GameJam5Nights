@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private float gameTime;
+    [SerializeField] public float gameTime;
     [SerializeField] private float addWaypointTime;
     [SerializeField] private Transform doorWaypoint;
     private GeneratePath generatePath;
