@@ -6,7 +6,7 @@ public class ColorChangeCrossHair : MonoBehaviour
     [SerializeField] private Image crossHair;
 
     [SerializeField] Outline outline;
-
+    [SerializeField] LayerMask LayerDoor;
     private void Start()
     {
         crossHair.color = new Color(1, 1, 1, 0.75f);
@@ -15,18 +15,17 @@ public class ColorChangeCrossHair : MonoBehaviour
     private void Update()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 50f))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 50f, LayerDoor))
         {
-            if (hit.transform.gameObject.CompareTag("Door"))
-            {
                 crossHair.color = new Color(1, 0, 0, 0.75f);
                 outline.enabled = true;
-            }
+                Debug.Log("door");
         }
         else
         {
             crossHair.color = new Color(1, 1, 1, 0.75f);
-            outline.enabled = false; 
+            outline.enabled = false;
+            Debug.Log("door 2");
         }
     }
 }
