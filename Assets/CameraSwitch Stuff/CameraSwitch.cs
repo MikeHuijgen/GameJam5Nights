@@ -4,65 +4,139 @@ using UnityEngine;
 
 public class CameraSwitch : MonoBehaviour
 {
-    public Camera mainCamera;
+    Renderer screen;
+    public Material screenOff;
 
-    public List<Camera> camera = new List<Camera>();
-    public int index = 0;
+    bool canSwitch = false;
+
+    public List<Material> materials = new List<Material>();
+    int index = 0;
+
+    IEnumerator ledTimer;
+
+    public GameObject LED1;
+    public GameObject LED2;
+    public GameObject LED3;
+
+    public Material On;
+    public Material Off;
+
+    public List<string> overheatedCameras = new List<string>();
 
     void Start()
     {
-        mainCamera.enabled = true;
-        
-        foreach(Camera c in camera)
-        {
-            c.enabled = false;
-        }
+        screen = GetComponent<Renderer>();
+        screen.material = screenOff;
+
+        ledTimer = LEDTimer();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && mainCamera.enabled)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            camera[index].enabled = true;
-            mainCamera.enabled = false;
+            canSwitch = true;
+            screen.material = materials[index];
+
+            StartCoroutine(ledTimer);
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) && !mainCamera.enabled)
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (index >= camera.Count - 1)
+            StopCoroutine(ledTimer);
+
+            LED1.GetComponent<Renderer>().material = Off;
+            LED2.GetComponent<Renderer>().material = Off;
+            LED3.GetComponent<Renderer>().material = Off;
+
+            canSwitch = false;
+            screen.material = screenOff;
+
+            ledTimer = LEDTimer();
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow) && canSwitch)
+        {
+            StopCoroutine(ledTimer);
+
+            LED1.GetComponent<Renderer>().material = Off;
+            LED2.GetComponent<Renderer>().material = Off;
+            LED3.GetComponent<Renderer>().material = Off;
+
+            if (index >= materials.Count - 1)
             {
                 index = 0;
-                camera[index].enabled = true;
-                camera[camera.Count - 1].enabled = false;
+                screen.material = materials[index];
             }
             else
             {
                 index++;
-                camera[index].enabled = true;
-                camera[index - 1].enabled = false;
+                screen.material = materials[index];
             }
+
+            ledTimer = LEDTimer();
+            StartCoroutine(ledTimer);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && !mainCamera.enabled)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && canSwitch)
         {
+            StopCoroutine(ledTimer);
+
+            LED1.GetComponent<Renderer>().material = Off;
+            LED2.GetComponent<Renderer>().material = Off;
+            LED3.GetComponent<Renderer>().material = Off;
+
             if (index <= 0)
             {
-                index = camera.Count - 1;
-                camera[index].enabled = true;
-                camera[0].enabled = false;
+                index = materials.Count - 1;
+                screen.material = materials[index];
             }
             else
             {
                 index--;
-                camera[index].enabled = true;
-                camera[index + 1].enabled = false;
+                screen.material = materials[index];
             }
+
+            ledTimer = LEDTimer();
+            StartCoroutine(ledTimer);
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && !mainCamera.enabled)
+        if (overheatedCameras.Contains(materials[index].name))
         {
-            mainCamera.enabled = true;
-            camera[index].enabled = false;
+            screen.material = screenOff;
         }
+        else if (canSwitch)
+        {
+            screen.material = materials[index];
+        }
+    }
+
+    IEnumerator LEDTimer()
+    {
+        yield return new WaitForSeconds(1);
+        LED1.GetComponent<Renderer>().material = On;
+
+        yield return new WaitForSeconds(1);
+        LED2.GetComponent<Renderer>().material = On;
+
+        yield return new WaitForSeconds(1);
+        LED3.GetComponent<Renderer>().material = On;
+
+        yield return new WaitForSeconds(1);
+        overheatedCameras.Add(materials[index].name);
+        StartCoroutine(OverheatCooldown());
+
+        LED1.GetComponent<Renderer>().material = Off;
+        LED2.GetComponent<Renderer>().material = Off;
+        LED3.GetComponent<Renderer>().material = Off;
+
+        ledTimer = LEDTimer();
+        StartCoroutine(ledTimer);
+    }
+
+    IEnumerator OverheatCooldown()
+    {
+        yield return new WaitForSeconds(5);
+        overheatedCameras.RemoveAt(0);
     }
 }
