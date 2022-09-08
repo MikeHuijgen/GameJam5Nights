@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Battery : MonoBehaviour
 {
+    [Header("Battery Settings")]
     [SerializeField][Range(0,100)] private int batteryProcent;
     [SerializeField] private float decreaseBatterytime;
     [SerializeField] public bool lightIsOn = false;
-    [SerializeField] private Transform aiParent;
+    [Header("BatteryBar Settings")]
+    [SerializeField] private Slider batteryBar;
+    [SerializeField] private Image batteryFill;
+    [SerializeField] private Gradient fillGradient;
 
     private HallLight hallLight;
     private float currentBatteryTime;
@@ -16,6 +21,7 @@ public class Battery : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        batteryFill.color = fillGradient.Evaluate(1f);
         batteryProcent = 100;
         currentBatteryTime = decreaseBatterytime;
         hallLight = FindObjectOfType<HallLight>();
@@ -36,6 +42,7 @@ public class Battery : MonoBehaviour
             if (lightIsOn && currentBatteryTime <= 0)
             {
                 batteryProcent--;
+                UpdateBatteryBar();
                 currentBatteryTime = decreaseBatterytime;
             }
         }
@@ -51,5 +58,11 @@ public class Battery : MonoBehaviour
             hallLight.BatteryHasDied();
             generatePath.BatteryHasDied();
         }
+    }
+
+    private void UpdateBatteryBar()
+    {
+        batteryFill.color = fillGradient.Evaluate(batteryBar.normalizedValue);
+        batteryBar.value = batteryProcent;
     }
 }
