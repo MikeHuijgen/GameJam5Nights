@@ -4,16 +4,74 @@ using UnityEngine;
 
 public class Cutscene : MonoBehaviour
 {
+    [SerializeField] Animator animator;
 
-    //Code uitzetten : "outline - colorchangecrosshair - crosshairmovement".
-    //Als je op de deur klikt begint de animatie. Niet aan het begin van de game. 
-
+    //scripts 
+    [SerializeField] Outline outline;
+    [SerializeField] ColorChangeCrossHair colorChange;
+    [SerializeField] CrossHairMovement crossMovement;
+    private void Awake()
+    {
+        animator.enabled = false;
+    }
     private void Start()
     {
-         
+        animator = gameObject.GetComponent<Animator>();
     }
     private void Update()
     {
-        
+        ToDoor();
+        ToChair();
+    }
+
+    void ToDoor()
+    {
+        if (Input.GetKey(KeyCode.A))
+        {
+            animator.enabled = true;
+            animator.SetTrigger("ToTheDoor");
+            outline.enabled = false;
+            colorChange.enabled = false;
+            crossMovement.enabled = false;
+        }
+        if (Input.GetMouseButton(0))
+        {
+            animator.enabled = true;
+            animator.SetTrigger("ToTheDoor");
+            outline.enabled = false;
+            colorChange.enabled = false;
+            crossMovement.enabled = false;
+        }
+        else
+        {
+            outline.enabled = true;
+            colorChange.enabled = true;
+            crossMovement.enabled = true;
+        }
+    }
+    void ToChair()
+    {
+        if (Input.GetKey(KeyCode.D))
+        {
+            animator.enabled = true;
+            animator.SetTrigger("ToTheChair");
+            outline.enabled = false;
+            colorChange.enabled = false;
+            crossMovement.enabled = false;
+        }
+        if (Input.GetMouseButton(0))
+        {
+            animator.enabled = true;
+            animator.SetTrigger("ToTheDoor");
+            outline.enabled = false;
+            colorChange.enabled = false;
+            crossMovement.enabled = false;
+        }
+        else
+        {
+            outline.enabled = true;
+            colorChange.enabled = true;
+            crossMovement.enabled = true;
+        }
     }
 }
