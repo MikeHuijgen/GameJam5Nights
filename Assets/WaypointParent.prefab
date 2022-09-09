@@ -168,6 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorWaypoint: {fileID: 0}
-  waypoints: []
   waypointParent: {fileID: 53301250355558518}
+  aiParent: {fileID: 0}
   currentWaypoint: {fileID: 0}
+  waypoints: []
+  aIList: []

@@ -8,7 +8,7 @@ public class DigitaleClock : MonoBehaviour
     [SerializeField] private TMP_Text ClockText;
     [SerializeField] private int hourInt;
     [SerializeField] private int minuteInt;
-    [SerializeField][Range(0.01f,1f)] private float secondTime;
+    [SerializeField][Range(0.01f,4f)] private float secondTime;
 
     private float resetTime;
     private bool youWon = false;

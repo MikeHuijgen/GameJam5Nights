@@ -41,6 +41,11 @@ public class AIPathFinding : MonoBehaviour
         if(!batteryDied)
         {
             currentDesTime -= Time.deltaTime;
+            if (currentDesTime <= 0 && currentWaypoint != null)
+            {
+                generatePath.AddWaypointBack(currentWaypoint);
+            }
+
             if (currentDesTime <= 0)
             {
                 generatePath.GenPath(this);
