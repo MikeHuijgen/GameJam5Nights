@@ -8138,13 +8138,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 739475254}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.38, y: 0.42, z: 0.502}
+  m_LocalRotation: {x: 0, y: 0.9969379, z: -0, w: -0.078198045}
+  m_LocalPosition: {x: 0.46, y: 0.5, z: -0.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 359.6528, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 188.97, z: 0}
 --- !u!114 &739475258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8240,7 +8240,7 @@ Animator:
   m_GameObject: {fileID: 739475254}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dba3d5566a4a9d149a5096342cc78c9f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -11052,9 +11052,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 287ab734921d44a4dbfaed2bd6b87c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outline: {fileID: 562461713}
-  colorChange: {fileID: 739475261}
-  hairMovement: {fileID: 739475258}
 --- !u!1 &1104983105
 GameObject:
   m_ObjectHideFlags: 0

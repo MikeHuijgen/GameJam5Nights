@@ -8,12 +8,11 @@ public class Cutscene : MonoBehaviour
     //Code uitzetten : "outline - colorchangecrosshair - crosshairmovement".
     //Als je op de deur klikt begint de animatie. Niet aan het begin van de game. 
 
-    void Start()
+    private void Start()
     {
-        
+         
     }
-
-    private void OnMouseDown()
+    private void Update()
     {
         
     }
