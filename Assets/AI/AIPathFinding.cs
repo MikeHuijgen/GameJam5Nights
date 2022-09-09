@@ -9,9 +9,9 @@ public class AIPathFinding : MonoBehaviour
     [Header("AI Settings")]
     [Tooltip("Change the time the AI gets a new destination")]
     [SerializeField][Range(1,20)] private float changeWaypointTime;
-    [SerializeField] private float halfDestinationTime;
-
+    [SerializeField][Range(1,100)] private float halfDestinationTime;
     [SerializeField] private float currentDesTime;
+
     public Transform currentWaypoint;
     private NavMeshAgent agent;
     private GeneratePath generatePath;

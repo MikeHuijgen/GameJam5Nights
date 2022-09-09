@@ -11,12 +11,10 @@ public class GeneratePath : MonoBehaviour
     [SerializeField] private List<Transform> waypoints = new List<Transform>();
     [SerializeField] private List<Transform> aIList = new List<Transform>();
 
-    private AIPathFinding aI;
     private bool batteryDied = false;
 
     private void Start()
     {
-        aI = FindObjectOfType<AIPathFinding>();
         CheckForWaypoints();
         CheckForAi();
     }
@@ -40,10 +38,6 @@ public class GeneratePath : MonoBehaviour
     public void GenPath(AIPathFinding aI)
     {
         Transform destination = waypoints[Random.Range(0, waypoints.Count)];
-        if (currentWaypoint == destination)
-        {
-            GenPath(aI);
-        }
         currentWaypoint = destination;
         aI.GetWaypoint(destination);
         waypoints.Remove(destination);
