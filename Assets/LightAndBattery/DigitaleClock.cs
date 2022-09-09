@@ -12,8 +12,10 @@ public class DigitaleClock : MonoBehaviour
 
     private float resetTime;
     private bool youWon = false;
+    private bool batteryDied = false;
 
     private GameManager gameManager;
+
     private void Start()
     {
         resetTime = secondTime;
@@ -28,7 +30,7 @@ public class DigitaleClock : MonoBehaviour
 
     private void UpdateClock()
     {
-        if (!youWon)
+        if (!youWon && !batteryDied)
         {
             resetTime -= Time.deltaTime;
             if (resetTime <= 0)
@@ -63,5 +65,10 @@ public class DigitaleClock : MonoBehaviour
             youWon = true;
             Debug.Log("You won");
         }
+    }
+
+    public void BatteryDied()
+    {
+        batteryDied = true;
     }
 }

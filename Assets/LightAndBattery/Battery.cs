@@ -54,7 +54,9 @@ public class Battery : MonoBehaviour
         {
             batteryDied = true;
             GeneratePath generatePath = FindObjectOfType<GeneratePath>();
+            DigitaleClock clock = FindObjectOfType<DigitaleClock>();
 
+            clock.BatteryDied();
             hallLight.BatteryHasDied();
             generatePath.BatteryHasDied();
         }

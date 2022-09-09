@@ -9,7 +9,7 @@ public class AIPathFinding : MonoBehaviour
     [Header("AI Settings")]
     [Tooltip("Change the time the AI gets a new destination")]
     [SerializeField][Range(1,20)] private float changeWaypointTime;
-    [SerializeField] private float changeDestinationTime;
+    [SerializeField] private float halfDestinationTime;
 
     [SerializeField] private float currentDesTime;
     public Transform currentWaypoint;
@@ -57,7 +57,7 @@ public class AIPathFinding : MonoBehaviour
 
     private void ChangeDestinationTime()
     {
-        if (gameManager.gameTime > changeDestinationTime && !timeHasChanged)
+        if (gameManager.gameTime > halfDestinationTime && !timeHasChanged)
         {
             timeHasChanged = true;
             changeWaypointTime /= 2; 

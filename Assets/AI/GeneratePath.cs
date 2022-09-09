@@ -5,12 +5,11 @@ using UnityEngine;
 public class GeneratePath : MonoBehaviour
 {
     [SerializeField] private Transform doorWaypoint;
-    [SerializeField] private List<Transform> waypoints = new List<Transform>();
-    [SerializeField] private List<Transform> aIList = new List<Transform>();
     [SerializeField] private Transform waypointParent;
     [SerializeField] private Transform aiParent;
     [SerializeField] private Transform currentWaypoint;
-    [SerializeField] private bool waypointsCleared = false;
+    [SerializeField] private List<Transform> waypoints = new List<Transform>();
+    [SerializeField] private List<Transform> aIList = new List<Transform>();
 
     private AIPathFinding aI;
     private bool batteryDied = false;
