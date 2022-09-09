@@ -40,8 +40,13 @@ public class GeneratePath : MonoBehaviour
     public void GenPath(AIPathFinding aI)
     {
         Transform destination = waypoints[Random.Range(0, waypoints.Count)];
+        if (currentWaypoint == destination)
+        {
+            GenPath(aI);
+        }
         currentWaypoint = destination;
         aI.GetWaypoint(destination);
+        waypoints.Remove(destination);
     }
 
     public void AddDoorWaypoint()
@@ -66,5 +71,10 @@ public class GeneratePath : MonoBehaviour
         randomAi.gameObject.SetActive(true);
         randomAi.GetComponent<AIPathFinding>().GoKillThePLayer();
         randomAi.GetComponent<AIPathFinding>().GetWaypoint(doorWaypoint);
+    }
+
+    public void AddWaypointBack(Transform waypoint)
+    {
+        waypoints.Add(waypoint);
     }
 }
