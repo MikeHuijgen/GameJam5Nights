@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class CameraSwitch : MonoBehaviour
 {
     Renderer screen;
-    public Material screenOff;
+    public Material cameraOff;
+    public Material cameraStatic;
+
+    VideoPlayer staticEffect;
 
     bool canSwitch = false;
 
@@ -23,10 +27,15 @@ public class CameraSwitch : MonoBehaviour
 
     public List<string> overheatedCameras = new List<string>();
 
+    public TMPro.TextMeshPro cameraNumber;
+
     void Start()
     {
         screen = GetComponent<Renderer>();
-        screen.material = screenOff;
+        screen.material = cameraOff;
+        cameraNumber.faceColor = Color.black;
+
+        staticEffect = GetComponent<VideoPlayer>();
 
         ledTimer = LEDTimer();
     }
@@ -37,6 +46,7 @@ public class CameraSwitch : MonoBehaviour
         {
             canSwitch = true;
             screen.material = materials[index];
+            cameraNumber.faceColor = Color.white;
 
             StartCoroutine(ledTimer);
         }
@@ -50,7 +60,8 @@ public class CameraSwitch : MonoBehaviour
             LED3.GetComponent<Renderer>().material = Off;
 
             canSwitch = false;
-            screen.material = screenOff;
+            cameraNumber.faceColor = Color.black;
+            screen.material = cameraOff;
 
             ledTimer = LEDTimer();
         }
@@ -101,13 +112,17 @@ public class CameraSwitch : MonoBehaviour
             StartCoroutine(ledTimer);
         }
 
+        cameraNumber.text = (index + 1).ToString();
+
         if (overheatedCameras.Contains(materials[index].name))
         {
-            screen.material = screenOff;
+            staticEffect.Play();
+            screen.material = cameraStatic;
         }
         else if (canSwitch)
         {
             screen.material = materials[index];
+            staticEffect.Stop();
         }
     }
 
@@ -136,7 +151,7 @@ public class CameraSwitch : MonoBehaviour
 
     IEnumerator OverheatCooldown()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10);
         overheatedCameras.RemoveAt(0);
     }
 }
