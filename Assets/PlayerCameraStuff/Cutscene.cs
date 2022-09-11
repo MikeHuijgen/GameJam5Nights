@@ -10,6 +10,7 @@ public class Cutscene : MonoBehaviour
     [SerializeField] Outline outline;
     [SerializeField] ColorChangeCrossHair colorChange;
     [SerializeField] CrossHairMovement crossMovement;
+
     private void Awake()
     {
         animator.enabled = false;
@@ -34,14 +35,14 @@ public class Cutscene : MonoBehaviour
             colorChange.enabled = false;
             crossMovement.enabled = false;
         }
-        if (Input.GetMouseButton(0))
+        /*if (Input.GetMouseButton(0))
         {
             animator.enabled = true;
             animator.SetTrigger("ToTheDoor");
             outline.enabled = false;
             colorChange.enabled = false;
             crossMovement.enabled = false;
-        }
+        }*/
         else
         {
             outline.enabled = true;
@@ -59,14 +60,14 @@ public class Cutscene : MonoBehaviour
             colorChange.enabled = false;
             crossMovement.enabled = false;
         }
-        if (Input.GetMouseButton(0))
+        /*if (Input.GetMouseButton(0))
         {
             animator.enabled = true;
             animator.SetTrigger("ToTheDoor");
             outline.enabled = false;
             colorChange.enabled = false;
             crossMovement.enabled = false;
-        }
+        }*/
         else
         {
             outline.enabled = true;
