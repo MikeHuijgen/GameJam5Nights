@@ -5,11 +5,15 @@ using UnityEngine;
 public class Cutscene : MonoBehaviour
 {
     [SerializeField] Animator animator;
+    Animation animation; 
 
     //scripts 
     [SerializeField] Outline outline;
     [SerializeField] ColorChangeCrossHair colorChange;
     [SerializeField] CrossHairMovement crossMovement;
+
+
+    private bool animationFinished = false; 
 
     private void Awake()
     {
@@ -18,6 +22,7 @@ public class Cutscene : MonoBehaviour
     private void Start()
     {
         animator = gameObject.GetComponent<Animator>();
+        animation = GetComponent<Animation>();
     }
     private void Update()
     {
@@ -31,48 +36,32 @@ public class Cutscene : MonoBehaviour
         {
             animator.enabled = true;
             animator.SetTrigger("ToTheDoor");
-            outline.enabled = false;
-            colorChange.enabled = false;
-            crossMovement.enabled = false;
-        }
-        /*if (Input.GetMouseButton(0))
-        {
-            animator.enabled = true;
-            animator.SetTrigger("ToTheDoor");
-            outline.enabled = false;
-            colorChange.enabled = false;
-            crossMovement.enabled = false;
-        }*/
-        else
-        {
-            outline.enabled = true;
-            colorChange.enabled = true;
-            crossMovement.enabled = true;
+            CheckAnimatorState();
         }
     }
+
     void ToChair()
     {
         if (Input.GetKey(KeyCode.D))
         {
             animator.enabled = true;
             animator.SetTrigger("ToTheChair");
-            outline.enabled = false;
-            colorChange.enabled = false;
-            crossMovement.enabled = false;
+            CheckAnimatorState();
         }
-        /*if (Input.GetMouseButton(0))
+    }
+
+    void CheckAnimatorState()
+    {
+        AnimatorStateInfo animatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        float Ntime = animatorStateInfo.normalizedTime; 
+        if(Ntime > 1.0f && animationFinished == false)
         {
-            animator.enabled = true;
-            animator.SetTrigger("ToTheDoor");
-            outline.enabled = false;
-            colorChange.enabled = false;
-            crossMovement.enabled = false;
-        }*/
-        else
-        {
-            outline.enabled = true;
-            colorChange.enabled = true;
-            crossMovement.enabled = true;
+            animationFinished = true;
+            Debug.Log(Ntime);
+            Ntime = 0;
+            Debug.Log(Ntime);
+            Debug.Log(animationFinished);
+            animator.enabled = false;
         }
     }
 }
